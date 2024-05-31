@@ -1,7 +1,29 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model TipCalculatorModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-</div>
+<h1>Price Quotation</h1>
+
+<form asp-action="Index" method="post">
+    @* display the error message here *@
+    <div asp-validation-summary="All"></div>
+    <div>
+        <label asp-for="CostOfMeal">Cost of meal:</label>
+        <input asp-for="CostOfMeal" />
+    </div>
+    @* set the value for tip percentages *@
+    <div>
+        <label>15% Tip:</label>
+        <span>@ViewBag.Tip15.ToString("C2")</span>
+    </div>
+    <div>
+        <label>20% Tip:</label>
+        <span>@ViewBag.Tip20.ToString("C2")</span>
+    </div>
+    <div>
+        <label>25% Tip:</label>
+        <span>@ViewBag.Tip25.ToString("C2")</span>
+    </div>
+    @* post request to the controller *@
+    <button type="submit">Calculate</button>
+    @* clear the form by redirecting to the index action *@
+    <a asp-action="Index">Clear</a>
+</form>
